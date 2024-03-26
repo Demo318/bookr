@@ -29,3 +29,7 @@ def book_list(request):
     context = {'book_list': book_list}
     return render(request, 'reviews/book_list.html', context)
 
+def book_detail(request, pk):
+    book = Book.objects.get(pk=pk)
+    # reviews = Review.
+
