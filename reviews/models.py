@@ -57,8 +57,16 @@ class Contributor(models.Model):
         help_text="The contact email for the contributor."
     )
 
+    def initialed_name(self):
+        """ obj.first_names='Jerome David',
+        obj.last_names='Salinger' => 'Salinger, JD' """
+        initials = ''.join(
+            [name[0] for name in self.first_names.split(' ')]
+        )
+        return "{}, {}".format(self.last_names, initials)
+
     def __str__(self):
-        return self.first_names
+        return self.initialed_name()
 
 class BookContributor(models.Model):
     class ContributionRole(models.TextChoices):

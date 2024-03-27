@@ -7,16 +7,10 @@ from reviews.models import (
     Review
 )
 
-def initialed_name(obj):
-    """ obj.first_names='Jerome David',
-    obj.last_names='Salinger' => 'Salinger, JD' """
-    initials = ''.join(
-        [name[0] for name in obj.first_names.split(' ')]
-    )
-    return "{}, {}".format(obj.last_names, initials)
-
 class ContributorAdmin(admin.ModelAdmin):
-    list_display = (initialed_name,)
+    search_fields = ('last_names__startswith', 'first_names')
+    list_display = ('last_names', 'first_names') #(initialed_name,)
+    list_filter = ('last_names',)
 
 class BookAdmin(admin.ModelAdmin):
     search_fields = ('title','isbn__exact','publisher__name__startswith')
