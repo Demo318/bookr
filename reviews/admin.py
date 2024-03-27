@@ -20,6 +20,7 @@ class ContributorAdmin(admin.ModelAdmin):
 
 class BookAdmin(admin.ModelAdmin):
     list_display = ('title', 'isbn13','has_isbn')
+    list_filter = ('publisher',)
 
     @admin.display(
             ordering='isbn',
