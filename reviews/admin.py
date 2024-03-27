@@ -47,9 +47,17 @@ class BookAdmin(admin.ModelAdmin):
         """ '9780316769174' => True """
         return bool(obj.isbn)
 
+class ReviewAdmin(admin.ModelAdmin):
+    # exclude = ('date_edited',)
+    # fields = ('content', 'rating', 'creator', 'book')
+    fieldsets = (
+        (None, {"fields": ("creator", "book")}),
+        ("Review content", {"fields": ("content", "rating")}),
+    )
+
 admin.site.register(Publisher)
 admin.site.register(Contributor, ContributorAdmin)
 admin.site.register(Book, BookAdmin)
 admin.site.register(BookContributor)
-admin.site.register(Review)
+admin.site.register(Review, ReviewAdmin)
 
