@@ -19,6 +19,7 @@ class ContributorAdmin(admin.ModelAdmin):
     list_display = (initialed_name,)
 
 class BookAdmin(admin.ModelAdmin):
+    search_fields = ('title','isbn__exact','publisher__name__startswith')
     date_hierarchy = 'publication_date'
     list_display = ('title', 'isbn13','has_isbn')
     list_filter = ('publisher','publication_date')
