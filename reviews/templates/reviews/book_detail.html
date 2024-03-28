@@ -1,0 +1,42 @@
+{% extends 'reviews/base.html' %}
+
+{% block content %}
+    <h2>Book Details</h2>
+    <hr>
+    <span class="text-info">Title: </span><span>{{book.title}}</span>
+    <br>
+    <span class="text-info">Publisher: </span><span>{{book.publisher}}</span>
+    <br>
+    <span class="text-info">Publication Date: </span><span>{{book.publication_date}}</span>
+    <br>
+    <span class="text-info">Overall Rating: </span><span class ="
+                                                        badge
+                                                        badge-primary
+                                                        badge-pill
+                                                    ">{{book.book_rating}}</span>
+    <hr>
+    <h2>Review Comments</h2>
+    <div class="ml-5">
+        <ul class="list-group">
+            {% for review in reviews %}
+            <li class="list-group-item">
+                <span class="text-info">Review comment: </span><span>{{ review.content }}</span>
+                <br>
+                <span class="text-info">Created on: </span><span>{{ review.date_created }}</span>
+                <br>
+                {% if review.date_edited %}
+                <span class="text-info">RModified on: </span><span>{{ review.date_edited }}</span>
+                <br>
+                {% endif %}
+                <span class="text-info">Rating: </span><span class="
+                                                        badge
+                                                        badge-secondary
+                                                        badge-pill
+                                                    ">{{ review.rating }}</span>
+                <br>
+                <span class="text-info">Creator: </span><span>{{ review.creator.email }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
