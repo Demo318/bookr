@@ -7,8 +7,8 @@ def index(request):
     return render(request, 'base.html')
 
 def book_search(request):
-    search_text = request.get('search', '')
-    return render(request, 'reviews/search-results.html', {'search_text': search_text})
+    search_text = request.GET.get('search', '')
+    return render(request, 'reviews/search_result.html', {'search_text': search_text})
 
 def book_list(request):
     books = Book.objects.all()
