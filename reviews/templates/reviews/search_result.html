@@ -1,10 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Search Results</title>
-</head>
-<body>
-    <h1>Search results for <em>{{ search_query }}</em></h1>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if search_text %}
+    Search Results for {{ search_text }}
+    {% else %}
+    Book Search
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <h2>Search for Books</h2>
+    <form method="get">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" name="submit_button" value="Submit Button" class="btn btn-primary">
+    </form>
+    {% if search_text %}
+    <h3>Search results for <em>{{ search_text }}</em></h3>
+    <ul class="list-group">
+        {% for book, contributors in books.items %}
+        <li class="list-group-item">
+            <span class="text-info">Title: </span><a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a><br>
+            <span class="text-info">Contributors: </span><br>
+            {% for contributor in contributors %}
+                {{ contributor.role }}: {{ contributor.name }}<br>
+            {% endfor %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+{% endblock %}
