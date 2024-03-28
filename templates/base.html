@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
-    <title>{% block title %}Book Review{% endblock %}</title>
+    <title>{% block title %}Bookr{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'main.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Source+Sans+Pro&display=swap">
     
@@ -37,7 +37,7 @@
             </ul>
             <form class="form-inline my-2 my-lg-0" method="get" action={% url 'book_search' %}>
               {% csrf_token %}
-              <input class="form-control mr-sm-2" name="search" minlength="3" type="search" placeholder="Search" aria-label="Search">
+              <input class="form-control mr-sm-2" name="search" minlength="3" type="search" placeholder="Search" aria-label="Search" value="{{ search_text }}">
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
           </div>
