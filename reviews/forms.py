@@ -1,4 +1,5 @@
 from django import forms
+from .models import Publisher
 
 class SearchForm(forms.Form):
     search = forms.CharField(
@@ -12,3 +13,8 @@ class SearchForm(forms.Form):
         ),
         required=False
     )
+
+class PublisherForm(forms.ModelForm):
+    class Meta:
+        model = Publisher
+        fields = '__all__'

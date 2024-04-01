@@ -1,9 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.db.models import Q
-from .models import Book, Review, Contributor, BookContributor
+from django.contrib import messages
+from .models import Book, Review, Contributor, BookContributor, Publisher
 from .utils import average_rating, evaluate_reviews, retrieve_book_contributors
-from .forms import SearchForm
+from .forms import SearchForm, PublisherForm
 
 def index(request):
     return render(request, 'base.html')
@@ -60,4 +61,31 @@ def book_detail(request, pk):
     context = { 'book': book, 'reviews': reviews }
     return render(request, 'reviews/book_detail.html', context)
 
+def publisher_edit(request, pk=None):
+    if pk is not None:
+        publisher = get_object_or_404(Publisher, pk=pk)
+    else:
+        publisher = None
 
+    if request.method == 'POST':
+        form = PublisherForm(request.POST, instance=publisher)
+        if form.is_valid():
+            updated_publisher = form.save()
+            if publisher is None:
+                messages.success(
+                    request,
+                    "Publisher \"{}\" was created.".format(updated_publisher)
+                )
+            else:
+                messages.success(
+                    request,
+                    "Publisher \"{}\" was updated.".format(updated_publisher)
+                )
+            return redirect('publisher_edit', updated_publisher.pk)
+    else:
+        form = PublisherForm(instance=publisher)
+    return render(
+        request,
+        'reviews/instance_form.html',
+        {'form': form, 'instance': publisher, 'model_type': 'Publisher'}
+    )
