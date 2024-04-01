@@ -36,7 +36,13 @@
                 <br>
                 <span class="text-info">Creator: </span><span>{{ review.creator.email }}</span>
             </li>
+            <a href="{% url 'review_edit' book.pk review.pk %}">Edit Review</a>
+            <br>
             {% endfor %}
         </ul>
     </div>
+    <br>
+    <a href="{% url 'review_create' book.pk %}">
+        <button class="btn btn-primary">New Review</button>
+    </a>
 {% endblock %}
