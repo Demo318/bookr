@@ -39,6 +39,16 @@ class Book(models.Model):
         'Contributor',
         through='BookContributor'
     )
+    cover = models.ImageField(
+        upload_to='book_covers/',
+        null=True,
+        blank=True
+    )
+    sample = models.FileField(
+        upload_to='book_samples/',
+        null=True,
+        blank=True
+    )
 
     def __str__(self):
         return self.title
