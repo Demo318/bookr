@@ -13,9 +13,10 @@ class ContributorAdmin(admin.ModelAdmin):
     list_filter = ('last_names',)
 
 class BookAdmin(admin.ModelAdmin):
-    search_fields = ('title','isbn__exact','publisher__name__startswith')
+    model = Book
+    search_fields = ('title','isbn__exact','publisher_name')
     date_hierarchy = 'publication_date'
-    list_display = ('title', 'isbn13','has_isbn')
+    list_display = ('title', 'isbn13','has_isbn', 'get_publisher', 'publication_date')
     list_filter = ('publisher','publication_date')
 
     @admin.display(
@@ -40,6 +41,9 @@ class BookAdmin(admin.ModelAdmin):
     def has_isbn(self, obj):
         """ '9780316769174' => True """
         return bool(obj.isbn)
+    
+    def get_publisher(self, obj):
+        return obj.publisher.name
 
 class ReviewAdmin(admin.ModelAdmin):
     # exclude = ('date_edited',)
