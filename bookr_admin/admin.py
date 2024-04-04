@@ -1,9 +1,9 @@
 from django.contrib import admin
-from django.contrib.auth.admin import User
+from django.contrib.admin.apps import AdminConfig
 
 class BookrAdmin(admin.AdminSite):
     site_header = "Bookr Administration"
 
-admin_site = BookrAdmin(name='bookr_admin')
+class BookrAdminConfig(AdminConfig):
+    default_site = 'bookr_admin.admin.BookrAdmin'
 
-admin_site.register(User)
