@@ -58,5 +58,10 @@
         {% endfor %}
         </p>
     </div>
+    <div class="infocell">
+        <p>Books Read</p>
+        {% load profile_tags %}
+        {% book_list request.user %}
+    </div>
 </div>
 {% endblock %}
