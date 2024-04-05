@@ -4,6 +4,7 @@ from . import views, api_views
 
 urlpatterns = [
     path('api/all-books/', api_views.AllBooks.as_view(), name='all_books'),
+    path('api/contributors/', api_views.ContributorView.as_view(), name='contributors'),
     path('books/', views.book_list, name='book_list'),
     path('book/<pk>/', views.book_detail, name='book_detail'),
     path('books/<int:pk>/media/', views.book_media, name='book_media'),

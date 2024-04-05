@@ -67,6 +67,9 @@ class Contributor(models.Model):
         help_text="The contact email for the contributor."
     )
 
+    def contributions(self):
+        return self.bookcontributor_set.count()
+
     def initialed_name(self):
         """ obj.first_names='Jerome David',
         obj.last_names='Salinger' => 'Salinger, JD' """
