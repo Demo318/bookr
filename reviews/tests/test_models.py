@@ -10,13 +10,14 @@ class TestPublisherModel(TestCase):
         )
         self.assertIsInstance(publisher, Publisher)
 
-def TestContributorModel(TestCase):
-    contributor = Contributor.objects.create(
-        first_names='Joe',
-        last_names='Duck',
-        email='hey@jduck.com'
-    )
-    self.assertIsInstance(contributor, Contributor)
+class TestContributorModel(TestCase):
+    def test_create_contributor(self):
+        contributor = Contributor.objects.create(
+            first_names='Joe',
+            last_names='Duck',
+            email='hey@jduck.com'
+        )
+        self.assertIsInstance(contributor, Contributor)
 
 class TestBookModel(TestCase):
     def setUp(self):
