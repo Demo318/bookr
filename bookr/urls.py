@@ -33,6 +33,7 @@ urlpatterns = [
     path('book-search/', reviews.views.book_search, name='book_search'),
     path('', include('reviews.urls')),
     path('filter_demo/', include('filter_demo.urls')),
+    path('', include('bookr_test.urls')),
 ]
 
 if settings.DEBUG:

@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 from .models import Publisher
 
 class TestPublisherModel(TestCase):
@@ -15,3 +15,12 @@ class TestPublisherModel(TestCase):
     
     def test_str_representation(self):
         self.assertEqual(str(self.p), 'Packt')
+
+class TestGreetingView(TestCase):
+    """Test the greeting view."""
+    def setUp(self):
+        self.client = Client()
+    
+    def test_greeting_view(self):
+        response = self.client.get('/test/greeting')
+        self.assertEqual(response.status_code, 200)
