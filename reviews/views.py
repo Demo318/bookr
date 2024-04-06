@@ -12,6 +12,7 @@ from .models import Book, Review, Contributor, BookContributor, Publisher
 from .utils import average_rating, evaluate_reviews, retrieve_book_contributors
 from .forms import SearchForm, PublisherForm, ReviewForm, BookMediaForm
 
+
 def index(request):
     return render(request, 'base.html')
 

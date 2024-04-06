@@ -64,4 +64,7 @@
         {% book_list request.user %}
     </div>
 </div>
+    {% autoescape off %}
+        {{ books_read_plot }}
+    {% endautoescape %}
 {% endblock %}
