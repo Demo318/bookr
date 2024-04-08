@@ -47,6 +47,8 @@ class Dev(Configuration):
         'bookr_test',
         'webpack_boilerplate',
         'debug_toolbar',
+        'crispy_forms',
+        'crispy_bootstrap4',
     ]
 
     MIDDLEWARE = [
@@ -154,6 +156,10 @@ class Dev(Configuration):
 
     # Debug Toolbar Settings
     INTERNAL_IPS = ['127.0.0.1']
+
+    # Crispy Forms Settings
+    CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap4'
+    CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 class Prod(Dev):
     DEBUG = False
