@@ -46,9 +46,11 @@ class Dev(Configuration):
         'rest_framework.authtoken',
         'bookr_test',
         'webpack_boilerplate',
+        'debug_toolbar',
     ]
 
     MIDDLEWARE = [
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
         'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
@@ -149,6 +151,9 @@ class Dev(Configuration):
     MEDIA_ROOT = BASE_DIR / 'media'
 
     MEDIA_URL = 'media/'
+
+    # Debug Toolbar Settings
+    INTERNAL_IPS = ['127.0.0.1']
 
 class Prod(Dev):
     DEBUG = False

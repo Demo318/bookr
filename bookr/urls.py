@@ -18,6 +18,7 @@ from django.conf.urls.static import static
 from django.contrib import admin, auth
 from django.urls import path, include
 from bookr.views import profile, reading_history
+import debug_toolbar
 
 import reviews.views
 
@@ -37,4 +38,8 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls))
+    ] + urlpatterns
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    
