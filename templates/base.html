@@ -1,5 +1,5 @@
 <!doctype html>
-{% load static %}
+{% load webpack_loader static %}
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -14,7 +14,8 @@
     <title>{% block title %}Bookr{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'main.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Source+Sans+Pro&display=swap">
-    
+    {% stylesheet_pack 'app' %}
+
   </head>
   <body>
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
@@ -70,5 +71,6 @@
     </div>
   </footer>
   <!-- Copyright -->
+  {% javascript_pack 'app' %}
   </body>
 </html>

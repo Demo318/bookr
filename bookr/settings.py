@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'bookr_test',
+    'webpack_boilerplate',
 ]
 
 MIDDLEWARE = [
@@ -123,7 +124,19 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [BASE_DIR / 'static']
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+    BASE_DIR / 'frontend/build', # for Webpack Files
+]
+
+STATIC_ROOT = BASE_DIR / 'static_temp'
+
+# Webpack Settings
+
+WEBPACK_LOADER = {
+    'MANIFEST_FILE': BASE_DIR / 'frontend/build/manifest.json',
+}
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
